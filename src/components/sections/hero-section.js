@@ -1,7 +1,7 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useModal } from "@/context/modal-context";
-import { MoveRight, PenToolIcon as Tool, Car, Clock } from "lucide-react";
+import { MoveRight, Hammer as Tool, Car, Clock } from "lucide-react";
 import Image from "next/image";
 
 export default function HeroSection() {

@@ -2,13 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  PenToolIcon as Tool,
-  PaintBucket,
-  Car,
-  Check,
-  Wrench,
-} from "lucide-react";
+import { Hammer as Tool, PaintBucket, Car, Check, Wrench } from "lucide-react";
 import Image from "next/image";
 
 export default function ServicesSection() {

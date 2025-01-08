@@ -1,48 +1,72 @@
-'use client'
+import { motion } from "framer-motion";
+import Image from "next/image";
 
-export function ContactSection() {
+export default function ContactSection() {
   return (
-    <section id="contact" className="bg-white px-4 py-32">
-      <div className="container mx-auto">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-6 text-4xl font-bold text-[#1D3414]">Kontakt & Anfahrt</h2>
-          <p className="mb-12 text-lg text-gray-600">
-            Sie finden uns in Meschenbach bei Coburg. Vereinbaren Sie einen Termin oder besuchen Sie uns direkt.
-          </p>
-        </div>
+    <>
+      {/* Contact Section */}
+      <section id="contact" className="bg-white py-24">
+        <div className="container mx-auto px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mx-auto max-w-[800px] space-y-4 text-center"
+          >
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-[#1D3414]">
+              KONTAKT
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Kontaktieren Sie uns für weitere Informationen oder um einen
+              Termin zu vereinbaren
+            </p>
+          </motion.div>
 
-        <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-2">
-          <div className="rounded-xl bg-[#F5F5F5] p-8">
-            <h3 className="mb-4 text-2xl font-bold text-[#1D3414]">Öffnungszeiten</h3>
-            <div className="space-y-2 text-gray-600">
-              <p>Montag - Freitag: 8:00 - 17:00 Uhr</p>
-              <p>Samstag: Nach Vereinbarung</p>
-              <p>Sonntag: Geschlossen</p>
-            </div>
+          <div className="mt-16 grid gap-12 lg:grid-cols-2">
+            {/* Left Content - Image */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="absolute -right-4 -top-4 h-full w-full rounded-3xl bg-[#1D3414] opacity-5" />
+              <Image
+                src="https://images.unsplash.com/photo-1589694934898-392904cde3c4?q=80&w=2244&auto=format&fit=crop"
+                alt="Auto Leffer Werkstatt"
+                width={600}
+                height={400}
+                className="relative z-10 rounded-3xl object-cover shadow-xl"
+                priority
+              />
+            </motion.div>
 
-            <h3 className="mb-4 mt-8 text-2xl font-bold text-[#1D3414]">Kontakt</h3>
-            <div className="space-y-2 text-gray-600">
-              <p>Telefon: +49(0)9565/7344</p>
-              <p>E-Mail: info@auto-leffer.de</p>
-              <p>Am Berg 4</p>
-              <p>OT Meschenbach</p>
-              <p>96253 Untersiemau</p>
-            </div>
+            {/* Right Content - Text */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="flex flex-col justify-center space-y-6"
+            >
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-[#1D3414]">
+                  Kontaktinformationen
+                </h3>
+                <p className="text-gray-600">Telefon: 09561 123456</p>
+                <p className="text-gray-600">
+                  E-Mail: [info@autoleffer.de](mailto:info@autoleffer.de)
+                </p>
+                <p className="text-gray-600">
+                  Adresse: Hauptstraße 12, 96269 Meschenbach
+                </p>
+              </div>
+            </motion.div>
           </div>
-
-          <div className="h-[400px] overflow-hidden rounded-xl">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2537.483077557669!2d10.971416776888392!3d50.23736997169936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a3cd8f95c7c8b9%3A0x3f8a6f4f8f8a6f4f!2sAuto%20Leffer!5e0!3m2!1sde!2sde!4v1629788000000!5m2!1sde!2sde"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
         </div>
-      </div>
-    </section>
-  )
+      </section>
+    </>
+  );
 }
