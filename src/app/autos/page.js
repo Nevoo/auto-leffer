@@ -1,6 +1,7 @@
 "use client";
 
 import CarCard from "@/components/ui/card-card";
+import { motion } from "framer-motion";
 
 export default function AutosPage() {
   const cars = [
@@ -29,12 +30,27 @@ export default function AutosPage() {
     // Add more cars as needed
   ];
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
   return (
     <div className="min-h-screen bg-white pt-20">
       <main className="py-24">
         <div className="container mx-auto px-4 md:px-6">
           {/* Header */}
-          <div className="mx-auto max-w-2xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mx-auto max-w-2xl text-center"
+          >
             <h1 className="text-3xl font-bold tracking-tight text-[#1D3414] sm:text-4xl">
               Unsere Fahrzeuge
             </h1>
@@ -43,14 +59,19 @@ export default function AutosPage() {
               werden von uns gründlich geprüft und sind in einem einwandfreien
               Zustand.
             </p>
-          </div>
+          </motion.div>
 
           {/* Cars Grid */}
-          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <motion.div
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+          >
             {cars.map((car) => (
               <CarCard key={car.id} car={car} />
             ))}
-          </div>
+          </motion.div>
         </div>
       </main>
     </div>

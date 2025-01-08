@@ -1,8 +1,22 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function CarCard({ car }) {
   return (
-    <div className="group overflow-hidden rounded-3xl bg-gray-50 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.5,
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+      }}
+      whileHover={{ y: -5 }}
+      className="group overflow-hidden rounded-3xl bg-gray-50 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+    >
       <div className="relative aspect-[16/9] w-full">
         <Image
           src={car.image}
@@ -42,6 +56,6 @@ export default function CarCard({ car }) {
           Anfrage senden
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }
