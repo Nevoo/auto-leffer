@@ -1,118 +1,200 @@
-'use client'
+"use client";
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { PenToolIcon as Tool, FileCheck, FuelIcon as Oil, Thermometer, Package, PaintBucket, Zap, Glasses, FuelIcon as Engine, Umbrella, Compass, Truck, Disc, Car, Shield, Check } from 'lucide-react'
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  PenToolIcon as Tool,
+  PaintBucket,
+  Car,
+  Check,
+  Wrench,
+} from "lucide-react";
+import Image from "next/image";
 
-export function ServicesSection() {
-  const [activeTab, setActiveTab] = useState("diagnose")
-  
+export default function ServicesSection() {
+  const [activeTab, setActiveTab] = useState("diagnose");
+
   const tabs = [
     {
       id: "diagnose",
-      title: "Diagnose",
-      description: "Mit modernster Diagnosetechnik finden wir schnell und präzise die Ursache für Probleme an Ihrem Fahrzeug.",
+      label: "Diagnose & Wartung",
+      title: "Professionelle Diagnose und Wartung",
+      description:
+        "Modernste Diagnosetechnik und umfassende Wartungsservices für alle Fahrzeugmarken. Wir sorgen für die optimale Leistung und Langlebigkeit Ihres Fahrzeugs.",
       features: [
-        { icon: Tool, text: "Computerdiagnose" },
-        { icon: FileCheck, text: "Fehleranalyse" },
-        { icon: Oil, text: "Ölservice" },
-        { icon: Thermometer, text: "Klimaanlagenservice" },
+        "Elektronische Fahrzeugdiagnose",
+        "Inspektion nach Herstellervorgaben",
+        "Ölwechsel und Flüssigkeitsservice",
+        "Klimaanlagenwartung",
+        "Saison-Check",
       ],
+      icon: Tool,
+      image:
+        "https://plus.unsplash.com/premium_photo-1661434904969-d3ca36791fb4?q=80&w=2487&auto=format&fit=crop",
     },
     {
-      id: "reparatur",
-      title: "Reparatur",
-      description: "Professionelle Reparaturen aller Art für Ihr Fahrzeug, von der Inspektion bis zur Unfallreparatur.",
+      id: "repair",
+      label: "Reparatur",
+      title: "Kompetente Reparatur und Instandsetzung",
+      description:
+        "Von der kleinsten Reparatur bis zur kompletten Motorinstandsetzung - unser erfahrenes Team kümmert sich um alle technischen Herausforderungen.",
       features: [
-        { icon: Package, text: "Ersatzteile" },
-        { icon: PaintBucket, text: "Lackierung" },
-        { icon: Zap, text: "Elektrik" },
-        { icon: Glasses, text: "Glasreparatur" },
+        "Unfallreparatur und Instandsetzung",
+        "Motorinstandsetzung",
+        "Erneuerung von Glasscheiben",
+        "Fahrwerkstechnik",
+        "Abschleppservice",
       ],
+      icon: Wrench,
+      image:
+        "https://plus.unsplash.com/premium_photo-1661373058906-4747dac37521?q=80&w=2340&auto=format&fit=crop",
     },
     {
-      id: "wartung",
-      title: "Wartung",
-      description: "Regelmäßige Wartung und Inspektion für eine lange Lebensdauer Ihres Fahrzeugs.",
+      id: "special",
+      label: "Spezialservices",
+      title: "Spezialisierte Fahrzeugservices",
+      description:
+        "Individuelle Lösungen für besondere Anforderungen. Von der Lackierung bis zum Tuning bieten wir Ihnen hochwertige Spezialservices.",
       features: [
-        { icon: Engine, text: "Motor" },
-        { icon: Umbrella, text: "Karosserie" },
-        { icon: Compass, text: "Fahrwerk" },
-        { icon: Truck, text: "Bremsen" },
+        "Professionelle Lackierungen",
+        "Karosserie- und Motortuning",
+        "Umfassender Reifenservice",
+        "Smart Repair",
       ],
+      icon: PaintBucket,
+      image:
+        "https://plus.unsplash.com/premium_photo-1682142263585-628a4561e136?q=80&w=2340&auto=format&fit=crop",
     },
     {
-      id: "tuev",
-      title: "TÜV & AU",
-      description: "Wir bereiten Ihr Fahrzeug optimal auf die Hauptuntersuchung vor und führen die AU durch.",
+      id: "sales",
+      label: "Verkauf",
+      title: "Fahrzeugverkauf und Zertifizierung",
+      description:
+        "Große Auswahl an Neu- und Gebrauchtfahrzeugen. Inklusive TÜV-Service und hochwertiger Ersatzteile für alle Marken.",
       features: [
-        { icon: Disc, text: "Bremsenprüfung" },
-        { icon: Car, text: "Hauptuntersuchung" },
-        { icon: Shield, text: "Sicherheitscheck" },
-        { icon: Check, text: "Abgasuntersuchung" },
+        "Verkauf von Neu- und Gebrauchtfahrzeugen",
+        "TÜV & AU Service",
+        "Original Ersatzteile & Zubehör",
+        "Garantieabwicklung",
       ],
+      icon: Car,
+      image:
+        "https://images.unsplash.com/photo-1498887960847-2a5e46312788?q=80&w=2338&auto=format&fit=crop",
     },
-  ]
+  ];
 
   return (
-    <section id="services" className="bg-white px-4 py-32">
-      <div className="container mx-auto">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-6 text-4xl font-bold text-[#1D3414]">Unsere Leistungen</h2>
-          <p className="mb-12 text-lg text-gray-600">
-            Von der Diagnose bis zur Reparatur - wir bieten Ihnen alle Leistungen aus einer Hand.
-          </p>
-        </div>
+    <>
+      {/* Services Section */}
+      <section
+        id="services"
+        className="relative overflow-hidden bg-white py-24"
+      >
+        <div className="container mx-auto px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mx-auto max-w-[800px] space-y-4 text-center"
+          >
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-[#1D3414]">
+              UNSERE SERVICELEISTUNGEN
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Umfassende Dienstleistungen für Ihr Fahrzeug - von der Diagnose
+              bis zur Reparatur
+            </p>
+          </motion.div>
 
-        <div className="mx-auto mt-8 max-w-5xl">
-          <div className="mb-8 flex flex-wrap justify-center gap-4">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`rounded-full px-6 py-2 text-lg font-medium transition-all duration-300 ${
-                  activeTab === tab.id
-                    ? "bg-[#1D3414] text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                }`}
-              >
-                {tab.title}
-              </button>
-            ))}
-          </div>
+          <div className="mt-16">
+            {/* Tabs */}
+            <div className="flex flex-wrap gap-2 rounded-full bg-gray-100 p-2">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex-1 rounded-full px-6 py-3 text-sm font-medium transition-all sm:flex-none 
+                      ${
+                        activeTab === tab.id
+                          ? "bg-[#1D3414] text-white"
+                          : "text-gray-600 hover:bg-gray-200"
+                      }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
 
-          <div className="relative mt-8 overflow-hidden rounded-2xl bg-[#F5F5F5] p-8">
-            <AnimatePresence mode="wait">
-              {tabs.map(
-                (tab) =>
-                  activeTab === tab.id && (
-                    <motion.div
-                      key={tab.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.3 }}
-                      className="text-center"
-                    >
-                      <h3 className="mb-4 text-2xl font-bold text-[#1D3414]">{tab.title}</h3>
-                      <p className="mb-8 text-lg text-gray-600">{tab.description}</p>
-                      <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
-                        {tab.features.map((feature, index) => (
-                          <div key={index} className="flex flex-col items-center">
-                            <div className="mb-4 rounded-full bg-white p-4 text-[#1D3414] shadow-md">
-                              <feature.icon className="h-6 w-6" />
-                            </div>
-                            <span className="text-sm font-medium text-gray-600">{feature.text}</span>
+            {/* Content */}
+            <div className="mt-8 min-h-[400px] rounded-3xl bg-gray-50 p-8 lg:p-12">
+              <div className="grid gap-8 lg:grid-cols-2">
+                <AnimatePresence mode="wait">
+                  {tabs.map((tab) => {
+                    if (activeTab === tab.id) {
+                      return (
+                        <motion.div
+                          key={tab.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          transition={{ duration: 0.3 }}
+                          className="space-y-6"
+                        >
+                          <tab.icon className="h-16 w-16 text-[#1D3414]" />
+                          <h3 className="text-2xl font-bold text-[#1D3414]">
+                            {tab.title}
+                          </h3>
+                          <p className="text-gray-600">{tab.description}</p>
+                          <div className="space-y-3">
+                            {tab.features.map((feature, index) => (
+                              <div
+                                key={index}
+                                className="flex items-center gap-2"
+                              >
+                                <Check className="h-5 w-5 text-[#9DE150]" />
+                                <span>{feature}</span>
+                              </div>
+                            ))}
                           </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )
-              )}
-            </AnimatePresence>
+                        </motion.div>
+                      );
+                    }
+                    return null;
+                  })}
+                </AnimatePresence>
+                <AnimatePresence mode="wait">
+                  {tabs.map((tab) => {
+                    if (activeTab === tab.id) {
+                      return (
+                        <motion.div
+                          key={tab.id}
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.95 }}
+                          transition={{ duration: 0.3 }}
+                          className="relative hidden lg:block"
+                        >
+                          <div className="absolute -right-4 -top-4 h-full w-full rounded-3xl bg-[#1D3414] opacity-5" />
+                          <Image
+                            src={tab.image}
+                            alt={tab.title}
+                            width={600}
+                            height={400}
+                            className="relative z-10 h-[400px] w-full rounded-3xl object-cover shadow-xl"
+                            priority
+                          />
+                        </motion.div>
+                      );
+                    }
+                    return null;
+                  })}
+                </AnimatePresence>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  )
+      </section>
+    </>
+  );
 }
