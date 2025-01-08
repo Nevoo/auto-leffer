@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useModal } from "@/context/modal-context";
 import { MoveRight, Hammer as Tool, Car, Clock } from "lucide-react";
 import Image from "next/image";
+import { BackdropImage } from "@/components/ui/backdrop-image";
 
 export default function HeroSection() {
   const { openModal } = useModal();
@@ -21,11 +22,9 @@ export default function HeroSection() {
 
         {/* Mobile Background Image */}
         <div className="absolute inset-0 z-0 lg:hidden">
-          <Image
+          <BackdropImage
             src="https://plus.unsplash.com/premium_photo-1661373022510-dfd61512e080?q=80&w=2431&auto=format&fit=crop"
             alt="Professionelle Autowartung"
-            fill
-            className="object-cover brightness-[0.85]"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white/80" />
@@ -133,43 +132,28 @@ export default function HeroSection() {
             </motion.div>
 
             {/* Right Content - Hidden on mobile */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative hidden lg:block"
-            >
-              <div className="relative h-full w-full">
-                <div className="absolute inset-0 z-0 opacity-5">
-                  <div className="absolute inset-0 bg-[#1D3414] opacity-5 rounded-2xl" />
-                </div>
-                <Image
-                  src="https://plus.unsplash.com/premium_photo-1661373022510-dfd61512e080?q=80&w=2431&auto=format&fit=crop"
-                  alt="Professionelle Autowartung"
-                  width={600}
-                  height={400}
-                  className="relative z-10 rounded-3xl object-cover shadow-xl"
-                  priority
-                />
-                <div className="absolute -bottom-6 -left-6 z-20 hidden rounded-2xl bg-white p-6 shadow-xl lg:block">
-                  <div className="flex items-center gap-4">
-                    <div className="rounded-full bg-[#9DE150]/10 p-3">
-                      <Clock className="h-8 w-8 text-[#1D3414]" />
+            <div className="relative hidden lg:block">
+              <BackdropImage
+                src="https://plus.unsplash.com/premium_photo-1661373022510-dfd61512e080?q=80&w=2431&auto=format&fit=crop"
+                alt="Professionelle Autowartung"
+                priority
+              />
+              <div className="absolute -bottom-6 -left-6 z-20 hidden rounded-2xl bg-white p-6 shadow-xl lg:block">
+                <div className="flex items-center gap-4">
+                  <div className="rounded-full bg-[#9DE150]/10 p-3">
+                    <Clock className="h-8 w-8 text-[#1D3414]" />
+                  </div>
+                  <div>
+                    <div className="font-medium text-[#1D3414]">
+                      Öffnungszeiten
                     </div>
-                    <div>
-                      <div className="font-medium text-[#1D3414]">
-                        Öffnungszeiten
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        Mo-Fr: 8:00-12:00 & 13:00-17:30
-                      </div>
+                    <div className="text-sm text-gray-600">
+                      Mo-Fr: 8:00-12:00 & 13:00-17:30
                     </div>
                   </div>
                 </div>
-                {/* Add a gradient overlay to ensure text readability */}
-                <div className="absolute inset-0 z-10 rounded-3xl bg-gradient-to-r from-[#1D3414]/10 to-transparent" />
               </div>
-            </motion.div>
+            </div>
 
             {/* Mobile Opening Hours */}
             <motion.div

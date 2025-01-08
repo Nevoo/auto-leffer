@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Hammer as Tool, Users, Heart } from "lucide-react";
-import Image from "next/image";
+import { BackdropImage } from "@/components/ui/backdrop-image";
 
 export default function AboutSection() {
   return (
@@ -29,23 +29,11 @@ export default function AboutSection() {
 
           <div className="mt-16 grid gap-12 lg:grid-cols-2">
             {/* Left Content - Image */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="absolute -right-4 -top-4 h-full w-full rounded-3xl bg-[#1D3414] opacity-5" />
-              <Image
-                src="https://images.unsplash.com/photo-1589694934898-392904cde3c4?q=80&w=2244&auto=format&fit=crop"
-                alt="Auto Leffer Werkstatt"
-                width={600}
-                height={400}
-                className="relative z-10 rounded-3xl object-cover shadow-xl"
-                priority
-              />
-            </motion.div>
+            <BackdropImage
+              src="https://images.unsplash.com/photo-1589694934898-392904cde3c4?q=80&w=2340&auto=format&fit=crop"
+              alt="Auto Leffer Werkstatt"
+              priority
+            />
 
             {/* Right Content - Text */}
             <motion.div

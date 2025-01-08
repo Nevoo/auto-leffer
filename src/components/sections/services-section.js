@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Hammer as Tool, PaintBucket, Car, Check, Wrench } from "lucide-react";
-import Image from "next/image";
+import { BackdropImage } from "@/components/ui/backdrop-image";
 
 export default function ServicesSection() {
   const [activeTab, setActiveTab] = useState("diagnose");
@@ -169,13 +169,10 @@ export default function ServicesSection() {
                           transition={{ duration: 0.3 }}
                           className="relative hidden lg:block"
                         >
-                          <div className="absolute -right-4 -top-4 h-full w-full rounded-3xl bg-[#1D3414] opacity-5" />
-                          <Image
+                          <BackdropImage
                             src={tab.image}
                             alt={tab.title}
-                            width={600}
-                            height={400}
-                            className="relative z-10 h-[400px] w-full rounded-3xl object-cover shadow-xl"
+                            className="h-[400px] w-full"
                             priority
                           />
                         </motion.div>
