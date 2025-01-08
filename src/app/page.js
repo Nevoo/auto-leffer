@@ -8,9 +8,11 @@ import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { useState } from "react"
 import { MoveRight, PenToolIcon as Tool, FileCheck, FuelIcon as Oil, Thermometer, Package, PaintBucket, Zap, Glasses, FuelIcon as Engine, Umbrella, Compass, Truck, Disc, Car, Shield, Check, Wrench, Clock, Users, Heart } from 'lucide-react'
+import { useModal } from '@/context/modal-context'
 
 export default function LandingPage() {
   const [activeTab, setActiveTab] = useState("diagnose")
+  const { openModal } = useModal()
   
   const tabs = [
     {
@@ -131,9 +133,12 @@ export default function LandingPage() {
                 </div>
 
                 <div className="flex flex-col gap-4 sm:flex-row">
-                  <Button className="group h-14 rounded-full bg-[#1D3414] px-8 text-white transition-all duration-300 hover:bg-[#2A4A1D] hover:shadow-lg hover:shadow-[#1D3414]/20">
+                  <Button
+                    className="group relative mt-8 h-14 overflow-hidden rounded-full bg-[#1D3414] px-8 text-lg font-medium text-white transition-all duration-300 hover:bg-[#2A4A1D]"
+                    onClick={openModal}
+                  >
                     Termin vereinbaren
-                    <MoveRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    <MoveRight className="ml-2 inline-block transition-transform group-hover:translate-x-1" />
                   </Button>
                   
                 </div>

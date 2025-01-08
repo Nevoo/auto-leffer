@@ -2,6 +2,8 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
+import { ModalProvider } from '@/context/modal-context'
+import { AppointmentModal } from '@/components/appointment-modal'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,13 +16,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="de">
       <body className={inter.className}>
-        <div className="flex min-h-screen flex-col bg-white">
-          <Navigation />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </div>
+        <ModalProvider>
+          <div className="flex min-h-screen flex-col bg-white">
+            <Navigation />
+            <main className="flex-1">
+              {children}
+            </main>
+            <Footer />
+          </div>
+          <AppointmentModal />
+        </ModalProvider>
       </body>
     </html>
   )
