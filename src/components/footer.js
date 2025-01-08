@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
+import Link from "next/link";
 
 export function Footer() {
   return (
@@ -15,13 +15,15 @@ export function Footer() {
                 <br />
                 Meschenbach bei Coburg
                 <br />
-                +49 (0) XXX XXXXXXX
+                +49(0)9565/7344
                 <br />
                 info@autohaus-leffer.de
               </p>
             </div>
             <div>
-              <h4 className="text-lg font-bold text-[#1D3414]">Öffnungszeiten</h4>
+              <h4 className="text-lg font-bold text-[#1D3414]">
+                Öffnungszeiten
+              </h4>
               <div className="mt-4 space-y-2 text-sm text-gray-600">
                 <p>Mo - Fr: 8:00 - 12:00</p>
                 <p>13:00 - 17:30</p>
@@ -31,10 +33,16 @@ export function Footer() {
             <div>
               <h4 className="text-lg font-bold text-[#1D3414]">Rechtliches</h4>
               <div className="mt-4 space-y-2 text-sm text-gray-600">
-                <Link href="/impressum" className="block hover:text-[#1D3414] transition-colors">
+                <Link
+                  href="/impressum"
+                  className="block hover:text-[#1D3414] transition-colors"
+                >
                   Impressum
                 </Link>
-                <Link href="/datenschutz" className="block hover:text-[#1D3414] transition-colors">
+                <Link
+                  href="/datenschutz"
+                  className="block hover:text-[#1D3414] transition-colors"
+                >
                   Datenschutz
                 </Link>
               </div>
@@ -46,5 +54,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
