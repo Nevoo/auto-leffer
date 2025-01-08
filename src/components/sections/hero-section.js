@@ -13,13 +13,8 @@ export default function HeroSection() {
       {/* Hero Section */}
       <section
         id="hero"
-        className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-white to-gray-50 pt-20"
+        className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden from-white to-gray-50 pt-20"
       >
-        {/* Background Pattern */}
-        <div className="absolute inset-0 z-0 opacity-5">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
-        </div>
-
         {/* Mobile Background Image */}
         <div className="absolute inset-0 z-0 lg:hidden">
           <BackdropImage
