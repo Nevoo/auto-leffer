@@ -1,6 +1,6 @@
 "use client";
 
-import { BackdropImage } from "@/components/ui/backdrop-image";
+import CarCard from "@/components/ui/card-card";
 
 export default function AutosPage() {
   const cars = [
@@ -30,7 +30,7 @@ export default function AutosPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-20">
       <main className="py-24">
         <div className="container mx-auto px-4 md:px-6">
           {/* Header */}
@@ -48,50 +48,7 @@ export default function AutosPage() {
           {/* Cars Grid */}
           <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {cars.map((car) => (
-              <div
-                key={car.id}
-                className="group overflow-hidden rounded-3xl bg-gray-50 p-4 transition-all hover:bg-gray-100"
-              >
-                <BackdropImage
-                  src={car.image}
-                  alt={car.title}
-                  className="aspect-[16/9] w-full"
-                />
-                <div className="mt-4 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xl font-bold text-[#1D3414]">
-                      {car.title}
-                    </h3>
-                    <span className="font-bold text-[#1D3414]">
-                      {car.price}
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
-                    <div>
-                      <span className="font-medium">Baujahr:</span> {car.year}
-                    </div>
-                    <div>
-                      <span className="font-medium">Kilometer:</span>{" "}
-                      {car.mileage}
-                    </div>
-                    <div>
-                      <span className="font-medium">Kraftstoff:</span>{" "}
-                      {car.fuel}
-                    </div>
-                    <div>
-                      <span className="font-medium">Leistung:</span> {car.power}
-                    </div>
-                  </div>
-                  <button
-                    className="mt-4 w-full rounded-full bg-[#1D3414] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#2A4A1D]"
-                    onClick={() =>
-                      (window.location.href = `mailto:info@autohaus-leffer.de?subject=Anfrage: ${car.title}`)
-                    }
-                  >
-                    Anfrage senden
-                  </button>
-                </div>
-              </div>
+              <CarCard key={car.id} car={car} />
             ))}
           </div>
         </div>
