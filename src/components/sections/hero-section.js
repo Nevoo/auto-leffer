@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useModal } from "@/context/modal-context";
 import { MoveRight, Hammer as Tool, Car, Clock } from "lucide-react";
-import Image from "next/image";
 import { BackdropImage } from "@/components/ui/backdrop-image";
 
 export default function HeroSection() {
@@ -13,18 +12,8 @@ export default function HeroSection() {
       {/* Hero Section */}
       <section
         id="hero"
-        className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden from-white to-gray-50 pt-20"
+        className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-white to-gray-50 pt-20"
       >
-        {/* Mobile Background Image */}
-        <div className="absolute inset-0 z-0 lg:hidden">
-          <BackdropImage
-            src="https://plus.unsplash.com/premium_photo-1661373022510-dfd61512e080?q=80&w=2431&auto=format&fit=crop"
-            alt="Professionelle Autowartung"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white/80" />
-        </div>
-
         <div className="container relative z-10 mx-auto px-4 py-20 md:px-6">
           <div className="grid gap-12 lg:grid-cols-2">
             {/* Left Content */}
