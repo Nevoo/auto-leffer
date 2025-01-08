@@ -1,80 +1,94 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { motion, AnimatePresence } from "framer-motion"
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { useModal } from '@/context/modal-context'
-import { AppointmentModal } from './appointment-modal'
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useModal } from "@/context/modal-context";
+import { AppointmentModal } from "./appointment-modal";
 
 export function Navigation() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { openModal } = useModal()
-  const pathname = usePathname()
-  const isHomePage = pathname === '/'
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { openModal } = useModal();
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHomePage = pathname === "/";
 
   const scrollToSection = (sectionId) => {
     if (!isHomePage) {
-      window.location.href = `/#${sectionId}`
-      return
+      router.push(`/#${sectionId}`);
+      return;
     }
 
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80 // Height of the fixed navbar
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - offset
+      const offset = 80; // Height of the fixed navbar
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
-      })
+        behavior: "smooth",
+      });
     }
-    setIsMenuOpen(false)
-  }
+    setIsMenuOpen(false);
+  };
 
   const handleAppointment = () => {
-    openModal()
-    setIsMenuOpen(false)
-  }
+    openModal();
+    setIsMenuOpen(false);
+  };
 
   const navItems = [
-    { id: 'services', label: 'Unsere Services' },
-    { id: 'about', label: 'Über Uns' },
-    { id: 'contact', label: 'Kontakt' },
-  ]
+    { id: "services", label: "Unsere Services" },
+    { id: "about", label: "Über Uns" },
+    { id: "contact", label: "Kontakt" },
+    { id: "cars", label: "Autos", href: "/autos" },
+  ];
+
+  const handleNavClick = (item) => {
+    if (item.href) {
+      router.push(item.href);
+      setIsMenuOpen(false);
+      return;
+    }
+
+    scrollToSection(item.id);
+  };
 
   return (
     <>
-      <nav className="fixed left-0 right-0 top-0 z-50 bg-white/80 backdrop-blur-md">
+      <header className="fixed left-0 right-0 top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-md">
         <div className="container mx-auto px-4">
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="text-xl font-bold text-[#1D3414] hover:text-[#1D3414]/80 transition-colors">
+            <Link
+              href="/"
+              className="text-xl font-bold text-[#1D3414] hover:text-[#1D3414]/80 transition-colors"
+            >
               Auto Leffer
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex md:items-center md:space-x-8">
+            <nav className="hidden space-x-8 md:flex">
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleNavClick(item)}
                   className="text-[#1D3414] transition-colors hover:text-[#9DE150]"
                 >
                   {item.label}
                 </button>
               ))}
-              <Button 
+              <Button
                 className="h-10 rounded-full bg-[#1D3414] px-6 text-white transition-all duration-300 hover:bg-[#2A4A1D]"
                 onClick={handleAppointment}
               >
                 Termin vereinbaren
               </Button>
-            </div>
+            </nav>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile menu button */}
             <button
               className="rounded-lg p-2 text-[#1D3414] hover:bg-[#1D3414]/5 md:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -102,43 +116,43 @@ export function Navigation() {
                 )}
               </svg>
             </button>
-          </div>
 
-          {/* Mobile Menu */}
-          <AnimatePresence>
-            {isMenuOpen && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                className="border-t border-gray-200 md:hidden"
-              >
-                <div className="space-y-4 py-4">
-                  {navItems.map((item) => (
-                    <button
-                      key={item.id}
-                      onClick={() => scrollToSection(item.id)}
-                      className="block w-full px-4 py-2 text-left text-[#1D3414] transition-colors hover:bg-[#1D3414]/5"
-                    >
-                      {item.label}
-                    </button>
-                  ))}
-                  <div className="px-4">
-                    <Button 
-                      className="h-10 w-full rounded-full bg-[#1D3414] text-white transition-all duration-300 hover:bg-[#2A4A1D]"
-                      onClick={handleAppointment}
-                    >
-                      Termin vereinbaren
-                    </Button>
+            {/* Mobile menu */}
+            <AnimatePresence>
+              {isMenuOpen && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="border-t border-gray-200 md:hidden"
+                >
+                  <div className="space-y-1 pb-3 pt-2">
+                    {navItems.map((item) => (
+                      <button
+                        key={item.id}
+                        onClick={() => handleNavClick(item)}
+                        className="block w-full px-4 py-2 text-left text-[#1D3414] transition-colors hover:bg-[#1D3414]/5"
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                    <div className="px-4">
+                      <Button
+                        className="h-10 w-full rounded-full bg-[#1D3414] text-white transition-all duration-300 hover:bg-[#2A4A1D]"
+                        onClick={handleAppointment}
+                      >
+                        Termin vereinbaren
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
-      </nav>
+      </header>
 
       <AppointmentModal />
     </>
-  )
+  );
 }

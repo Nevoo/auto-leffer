@@ -34,12 +34,6 @@ export function Footer() {
               <h4 className="text-lg font-bold text-[#1D3414]">Rechtliches</h4>
               <div className="mt-4 space-y-2 text-sm text-gray-600">
                 <Link
-                  href="/autos"
-                  className="block hover:text-[#1D3414] transition-colors"
-                >
-                  Autos
-                </Link>
-                <Link
                   href="/impressum"
                   className="block hover:text-[#1D3414] transition-colors"
                 >
