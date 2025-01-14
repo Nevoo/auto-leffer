@@ -22,14 +22,14 @@ export default function ContactSection() {
             </p>
           </motion.div>
 
-          <div className="mt-16 grid gap-12 lg:grid-cols-2">
+          <div className="mt-16 grid items-center justify-items-center gap-12 lg:grid-cols-2">
             {/* Left Content - Map */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="relative h-[400px] w-full"
+              className="relative aspect-square w-full max-w-[600px] lg:aspect-video lg:justify-self-end"
             >
               <div className="absolute -right-4 -top-4 h-full w-full rounded-3xl bg-[#1D3414] opacity-5" />
               <iframe
@@ -50,7 +50,7 @@ export default function ContactSection() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="flex flex-col justify-center space-y-6"
+              className="flex w-full max-w-[400px] flex-col justify-center space-y-6 lg:justify-self-start"
             >
               <div className="space-y-6">
                 <h3 className="text-2xl font-bold text-[#1D3414]">

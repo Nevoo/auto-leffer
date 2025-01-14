@@ -59,7 +59,7 @@ export function Navigation() {
 
   return (
     <>
-      <header className="fixed left-0 right-0 top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-md">
+      <header className="fixed left-0 right-0 top-0 z-50 border-b border-gray-200 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
@@ -121,24 +121,53 @@ export function Navigation() {
             <AnimatePresence>
               {isMenuOpen && (
                 <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="border-t border-gray-200 md:hidden"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-50 bg-white md:hidden"
                 >
-                  <div className="space-y-1 pb-3 pt-2">
+                  <div className="container mx-auto px-4">
+                    <div className="flex h-20 items-center justify-between">
+                      <Link
+                        href="/"
+                        className="text-xl font-bold text-[#1D3414] hover:text-[#1D3414]/80 transition-colors"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        Auto Leffer
+                      </Link>
+                      <button
+                        className="rounded-lg p-2 text-[#1D3414] hover:bg-[#1D3414]/5"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <svg
+                          className="h-6 w-6"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div className="flex h-[calc(100vh-5rem)] flex-col justify-center space-y-8 p-4">
                     {navItems.map((item) => (
                       <button
                         key={item.id}
                         onClick={() => handleNavClick(item)}
-                        className="block w-full px-4 py-2 text-left text-[#1D3414] transition-colors hover:bg-[#1D3414]/5"
+                        className="block w-full py-4 text-center text-xl text-[#1D3414] transition-colors hover:text-[#9DE150]"
                       >
                         {item.label}
                       </button>
                     ))}
                     <div className="px-4">
                       <Button
-                        className="h-10 w-full rounded-full bg-[#1D3414] text-white transition-all duration-300 hover:bg-[#2A4A1D]"
+                        className="h-12 w-full rounded-full bg-[#1D3414] text-lg text-white transition-all duration-300 hover:bg-[#2A4A1D]"
                         onClick={handleAppointment}
                       >
                         Termin vereinbaren

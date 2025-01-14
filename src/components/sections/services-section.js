@@ -103,12 +103,12 @@ export default function ServicesSection() {
 
           <div className="mt-16">
             {/* Tabs */}
-            <div className="flex flex-wrap gap-2 rounded-full bg-gray-100 p-1.5 sm:p-2">
+            <div className="grid grid-cols-2 gap-2 rounded-2xl bg-gray-100 p-1.5 sm:flex sm:rounded-full sm:p-2">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 rounded-full px-3 py-2 text-xs font-medium transition-all sm:flex-none sm:px-6 sm:py-3 sm:text-sm
+                  className={`w-full rounded-xl px-3 py-2 text-xs font-medium transition-all sm:rounded-full sm:px-6 sm:py-3 sm:text-sm
                       ${
                         activeTab === tab.id
                           ? "bg-[#1D3414] text-white"
